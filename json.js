@@ -7,6 +7,7 @@
     "to": 3,
     "more": true,
     "count": 7000,
+    padding: 0 px 10 px;
     "hits": [{
             "recipe": {
                 "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_3da1169eb633a5e4607890ebf7dee89f",

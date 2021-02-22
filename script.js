@@ -13,19 +13,23 @@ let recipeInfo = (json) => {
     json.hits.forEach((item) => {
         console.log(item.recipe.label)
         resultsSection.innerHTML += `
-        <div>
-            <img src="${item.recipe.image}">
-            <h2>${item.recipe.label}</h2>
-            <p>${item.recipe.totalTime} min</p>
-            <p>${item.recipe.source}</p>
-            <a href="${item.recipe.url}" class="link">click here for recipe</a>
+        <div class="recipe-container">
+            <div class="image-container">
+                <img src="${item.recipe.image}">
+                <p class="cooking-time"><i class="fa fa-clock-o"></i> ${item.recipe.totalTime} min</p>
+            </div>
+            <div class="text-container">
+                <h2>${item.recipe.label}</h2>
+                <p>${item.recipe.source}</p>
+                <a href="${item.recipe.url}" class="link">click here for recipe</a>
+            </div>
         </div>
     `
     })
 }
 
 
-fetch(APIURLTWO)
+fetch(APIURL)
     .then((response) => {
         return response.json()
     })
