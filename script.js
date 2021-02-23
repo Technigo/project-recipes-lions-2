@@ -5,7 +5,7 @@ let searchInput = document.getElementById("search-input")
 let search = document.getElementById("search")
 
 //Global Variables
-const APIURL = "https://api.edamam.com/search?q=pizza&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9"
+const APIURL = "https://api.edamam.com/search?q=high-protein&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9"
 const APIURLTWO = "https://api.edamam.com/search?q=pizza&app_id=cb0f1bb1&app_key=7934267ee79a519d8019904f7184f12c";
 const APIURLTHREE = "https://api.edamam.com/search?q=pizza&app_id=cb0f1bb1&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e";
 let APIHannah = " "
@@ -21,9 +21,10 @@ let recipeInfo = (json) => {
                 <p class="cooking-time"><i class="fa fa-clock-o"></i> ${item.recipe.totalTime} min</p>
             </div>
             <div class="text-container">
-                <h2>${item.recipe.label}</h2>
-                <p>${item.recipe.source}</p>
-                <a href="${item.recipe.url}" class="link">click here for recipe</a>
+                  <h2 class="recipe-label">${item.recipe.label}</h2>
+                  <p class="source">${item.recipe.source}</p>
+                  <a href="${item.recipe.url}" class="link">click here for recipe</a>
+                  <p class="heart"><i class="fas fa-heart"></i></p>
             </div>
         </div>
     `

@@ -7,31 +7,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JMH Foods</title>
     <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/37c653cfef.js" crossorigin="anonymous"></script>
+    <script src="https://developer.edamam.com/attribution/badge.js"></script>
 </head>
 
 <body>
+
+    <!-- Header -->
     <header class="header">
-        <h1><i class="fa fa-bars"></i> JMH Foods</h1>
-        <nav>
+
+        <h1><i class='fas fa-pizza-slice'></i> food'nigo </h1>
+
+        <!-- Menu only visible on mobiles  -->
+        <nav class="mobile-menu">
+            <button class="login-menu"><i class="fa fa-home"></i></button>
+            <button class="login-menu"><i class="fa fa-bars"></i></button>
+        </nav>
+
+        <!-- Search bar in header -->
+        <nav class="search-box">
             <form id="search">
-                <input type="text" id="search-input" placeholder="Search for a type of food" name="search-field">
-                <button>SEARCH</button>
+                <input type="text" id="search-input" placeholder="Search for a type of food" name="search-field" class="search-input">
+                <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
             </form>
+        </nav>
+
+        <!-- Menu only visible on tablets and desktops -->
+        <nav class="desktop-menu">
+            <button class="login-menu"><i class="fa fa-home"></i></button>
+            <button class="login-menu"><i class="fa fa-bars"></i></button>
         </nav>
     </header>
 
-    <div class="container">
+    <!-- Main content -->
+    <main class="container">
+
+        <!-- Filter section -->
         <section class="filter-section" id="filter-section">
-            <h5>Filter</h5>
-            <p>Malin 🥷🏻🤩</p>
-            <p>Type</p>
-            <p>Hannah</p>
+
+            <!-- Section for city selector and delivery options -->
+            <div class="mobile-location">
+                <form class="location">
+                    <label for="city">choose city</label>
+                    <select id="city" name="city" class="select-city">
+                  <option value="stockholm">stockholm</option>
+                  <option value="goteborg">gothenburg</option>
+                  <option value="malmo">malmo</option>
+              </select>
+                </form>
+                <form class="delivery">
+                    <input type="radio" id="delivery" name="pick-delivery">
+                    <label for="delivery" class="delivery-label">Delivery</label>
+                    <input type="radio" id="pickup" name="pick-delivery">
+                    <label for="pickup" class="delivery-label">Pickup</label>
+                </form>
+            </div>
+
+            <!-- Section with food filterings with buttons -->
+            <div class="filter-recipes">
+                <h2 class="filter-title">Filter recipes</h2>
+                <h3 class="filter-style-title">by cooking time</h3>
+                <div class="filter-food">
+                    <button class="filter-button"><i class="fa fa-clock-o"></i> 15 min</button>
+                    <button class="filter-button"><i class="fa fa-clock-o"></i> 25 min</button>
+                    <button class="filter-button"><i class="fa fa-clock-o"></i> 35 min</button>
+                    <button class="filter-button"><i class="fa fa-clock-o"></i> 45 min</button>
+                </div>
+                <h3 class="filter-style-title">by cuisine</h3>
+                <div class="filter-food">
+                    <button class="filter-button">chicken</button>
+                    <button class="filter-button">pasta</button>
+                    <button class="filter-button">pizza</button>
+                    <button class="filter-button">soup</button>
+                    <button class="filter-button">rice</button>
+                    <button class="filter-button">salad</button>
+                    <button class="filter-button">tacos</button>
+                    <button class="filter-button">chicken</button>
+                    <button class="filter-button">soup</button>
+                </div>
+                <h3 class="filter-style-title">by dietary</h3>
+                <div class="filter-food">
+                    <button class="filter-button">vegeterian</button>
+                    <button class="filter-button">lactose-free</button>
+                    <button class="filter-button">high-protein</button>
+                    <button class="filter-button">gluten-free</button>
+                    <button class="filter-button">vegan</button>
+                    <button class="filter-button">peanut-free</button>
+                    <button class="filter-button">low-carb</button>
+                    <button class="filter-button">gluten-free</button>
+                </div>
+            </div>
         </section>
+
+        <!-- Section for all the recipes -->
         <section class="result-section" id="result-section"></section>
-    </div>
-    <script src="/script.js">
-    </script>
+
+    </main>
+
+    <!-- Edamam icon -->
+    <div id="edamam-badge" data-color="white" class="icon"></div>
+
+    <script src="/script.js"></script>
 </body>
 
 </html>
