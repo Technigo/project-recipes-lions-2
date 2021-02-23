@@ -1,16 +1,20 @@
 // DOM-selectors
-let filterSection = document.getElementById("filter-section")
-let resultsSection = document.getElementById("result-section")
-let searchInput = document.getElementById("search-input")
-let search = document.getElementById("search")
+const filterSection = document.getElementById("filter-section")
+const resultsSection = document.getElementById("result-section")
+const searchInput = document.getElementById("search-input")
+const search = document.getElementById("search")
+const chicken = document.getElementById("chicken");
+const pasta = document.getElementById("pasta");
+const vegeterian = document.getElementById("vegeterian");
+const lactoseFree = document.getElementById("lactose-free");
 
 //Global Variables
-const APISTART = "https://api.edamam.com/search?q=recipe&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9&from=0&to=100"
-const APIURLTWO = "https://api.edamam.com/search?q=pizza&app_id=cb0f1bb1&app_key=7934267ee79a519d8019904f7184f12c";
-const APIURLTHREE = "https://api.edamam.com/search?q=pizza&app_id=cb0f1bb1&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e";
+const APIURLSTART = "https://api.edamam.com/search?q=dinner&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9&from=0&to=100"
+const APIURLTWO = "https://api.edamam.com/search?q=pizza&app_id=cb0f1bb1&app_key=7934267ee79a519d8019904f7184f12cfrom=0&to=100";
+
 
 // FUNCTIONS
-let recipeInfo = (json) => {
+const recipeInfo = (json) => {
     json.hits.forEach((item) => {
         resultsSection.innerHTML += `
         <div class="recipe-container">
@@ -29,47 +33,16 @@ let recipeInfo = (json) => {
     })
 }
 
-// const getCookingTime = (json) => {
-//     const time = json.hits.recipe.totalTime;
-//     time.filter(time > 20)
-//     if (time > 20) {
-
-//     }
-//     const filterTime = json.hits.recipe.filter(item => item.totalTime);
-//     filteredForecast.forEach((forecastItem) => {
-
-//         const icon = `https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}@2x.png`;
-//         forecast.innerHTML += `
-//       <div>
-//         <p>${loopOverWeek}</p>
-//         <div>   
-//           <img class="small-icons" src="${icon}">
-//           <p>${loopOverTemp} °C</p>
-//         </div>
-//       </div>`
+// fetch(APIURLTHREE)
+//     .then((response) => {
+//         return response.json()
+//     })
+//     .then((json) => {
+//         const time = json.recipe.totalTime;
+//         console.log(time)
 //     });
-// };
 
-fetch(APISTART)
-    .then((response) => {
-        return response.json()
-    })
-    .then((json) => {
-        const time = json.recipe.totalTime;
-        console.log(time)
-        // console.log(recipeInfo(time))
-        const getCookingTime = time.map((cookingTime) => {
-        if (time < 20) {
-            return cookingTime
-            recipeInfo(cookingTime)
-        } else {
-            console.log("")
-        }
-
-    })
-});
-            
-    /*function to fetch with URL parameter*/
+/*function to fetch with URL parameter*/
 let callAPI = (url) => {
 
     fetch(url)
@@ -84,7 +57,7 @@ let callAPI = (url) => {
 
 
 /*returning the searched word into the URL to use in callAPI for new results*/
-let setAPI = (event) => {
+const setAPI = (event) => {
     event.preventDefault()
     let searchAPI = `https://api.edamam.com/search?q=${searchInput.value.toLowerCase()}&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9`
     resultsSection.innerHTML = " ";
@@ -92,15 +65,64 @@ let setAPI = (event) => {
 }
 
 
+/* Functions for filter buttons */
+
+const getChickenData = () => {
+    const APIChicken = "https://api.edamam.com/search?q=chicken&app_id=8c98f6f4&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e&from=0&to=100"
+    fetch(APIChicken)
+        .then((response) => {
+            return response.json()
+        })
+        .then((json) => {
+            resultsSection.innerHTML = " "
+            recipeInfo(json)
+        })
+}
+
+const getPastaData = () => {
+    const APIPasta = "https://api.edamam.com/search?q=pasta&app_id=8c98f6f4&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e&from=0&to=100"
+    fetch(APIPasta)
+        .then((response) => {
+            return response.json()
+        })
+        .then((json) => {
+            resultsSection.innerHTML = " "
+            recipeInfo(json)
+        })
+}
+
+const getVegetarianData = () => {
+    const APIVegetarian = "https://api.edamam.com/search?q=vegan&app_id=8c98f6f4&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e&from=0&to=100"
+    fetch(APIVegetarian)
+        .then((response) => {
+            return response.json()
+        })
+        .then((json) => {
+            resultsSection.innerHTML = " "
+            recipeInfo(json)
+        })
+}
+
+const getLactoseFreeData = () => {
+    const APILactoseFree = "https://api.edamam.com/search?q=lactose-free&app_id=8c98f6f4&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e&from=0&to=100"
+    fetch(APILactoseFree)
+        .then((response) => {
+            return response.json()
+        })
+        .then((json) => {
+            resultsSection.innerHTML = " "
+            recipeInfo(json)
+        })
+}
+
+
 
 /*Start*/
-callAPI(APISTART)
+callAPI(APIURLTWO)
 
 /*EVENTLISTENERS*/
 search.addEventListener("submit", setAPI)
-
-
-/* 
-ID c080c39f KEY ae4997265531140bc1aa520064a9b5e9
-ID cb0f1bb1 KEY 7934267ee79a519d8019904f7184f12c
-ID cb0f1bb1 KEY dd4f1f97d6e41f1e2d0be09cdd08db0e */
+chicken.addEventListener("click", getChickenData)
+pasta.addEventListener("click", getPastaData)
+vegeterian.addEventListener("click", getVegetarianData)
+lactoseFree.addEventListener("click", getLactoseFreeData)
