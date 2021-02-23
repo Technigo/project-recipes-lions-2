@@ -5,15 +5,13 @@ let searchInput = document.getElementById("search-input")
 let search = document.getElementById("search")
 
 //Global Variables
-const APIURL = "https://api.edamam.com/search?q=high-protein&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9"
+const APISTART = "https://api.edamam.com/search?q=recipe&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9&from=0&to=100"
 const APIURLTWO = "https://api.edamam.com/search?q=pizza&app_id=cb0f1bb1&app_key=7934267ee79a519d8019904f7184f12c";
 const APIURLTHREE = "https://api.edamam.com/search?q=pizza&app_id=cb0f1bb1&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e";
-let APIHannah = " "
 
 // FUNCTIONS
 let recipeInfo = (json) => {
     json.hits.forEach((item) => {
-        console.log(item.recipe.label)
         resultsSection.innerHTML += `
         <div class="recipe-container">
             <div class="image-container">
@@ -31,7 +29,47 @@ let recipeInfo = (json) => {
     })
 }
 
-/*Should we use this for all of our fetches with different APIs?*/
+// const getCookingTime = (json) => {
+//     const time = json.hits.recipe.totalTime;
+//     time.filter(time > 20)
+//     if (time > 20) {
+
+//     }
+//     const filterTime = json.hits.recipe.filter(item => item.totalTime);
+//     filteredForecast.forEach((forecastItem) => {
+
+//         const icon = `https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}@2x.png`;
+//         forecast.innerHTML += `
+//       <div>
+//         <p>${loopOverWeek}</p>
+//         <div>   
+//           <img class="small-icons" src="${icon}">
+//           <p>${loopOverTemp} °C</p>
+//         </div>
+//       </div>`
+//     });
+// };
+
+fetch(APISTART)
+    .then((response) => {
+        return response.json()
+    })
+    .then((json) => {
+        const time = json.recipe.totalTime;
+        console.log(time)
+        // console.log(recipeInfo(time))
+        const getCookingTime = time.map((cookingTime) => {
+        if (time < 20) {
+            return cookingTime
+            recipeInfo(cookingTime)
+        } else {
+            console.log("")
+        }
+
+    })
+});
+            
+    /*function to fetch with URL parameter*/
 let callAPI = (url) => {
 
     fetch(url)
@@ -39,31 +77,30 @@ let callAPI = (url) => {
             return response.json()
         })
         .then((json) => {
-            console.log(json)
             recipeInfo(json)
         })
 }
 
-/*start-fetch that loads the page. Should this instead be a "callAPI"-call?*/
-fetch(APIURLTWO)
-    .then((response) => {
-        return response.json()
-    })
-    .then((json) => {
-        console.log(json)
-        recipeInfo(json)
-    })
+
 
 /*returning the searched word into the URL to use in callAPI for new results*/
 let setAPI = (event) => {
     event.preventDefault()
-    let searchAPI = `https://api.edamam.com/search?q=${searchInput.value}&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9`
+    let searchAPI = `https://api.edamam.com/search?q=${searchInput.value.toLowerCase()}&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9`
+    resultsSection.innerHTML = " ";
     callAPI(searchAPI)
 }
 
 
+
+/*Start*/
+callAPI(APISTART)
+
 /*EVENTLISTENERS*/
-search.addEventListener("submit", () => {
-    resultsSection.innerHTML = '';
-    setAPI()
-})
+search.addEventListener("submit", setAPI)
+
+
+/* 
+ID c080c39f KEY ae4997265531140bc1aa520064a9b5e9
+ID cb0f1bb1 KEY 7934267ee79a519d8019904f7184f12c
+ID cb0f1bb1 KEY dd4f1f97d6e41f1e2d0be09cdd08db0e */
