@@ -44,7 +44,7 @@ let callAPI = (url) => {
 }
 
 /*start-fetch that loads the page. Should this instead be a "callAPI"-call?*/
-fetch(APIURL)
+fetch(APIURLTWO)
     .then((response) => {
         return response.json()
     })
@@ -62,4 +62,7 @@ let setAPI = (event) => {
 
 
 /*EVENTLISTENERS*/
-search.addEventListener("submit", setAPI)
+search.addEventListener("submit", () => {
+    resultsSection.innerHTML = '';
+    setAPI()
+})
