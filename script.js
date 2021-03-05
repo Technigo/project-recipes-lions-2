@@ -9,8 +9,8 @@ const vegeterian = document.getElementById("vegeterian");
 const lactoseFree = document.getElementById("lactose-free");
 
 //Global Variables
-const APIURLSTART = "https://api.edamam.com/search?q=dinner&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9&from=0&to=100"
-const APIURLTWO = "https://api.edamam.com/search?q=pizza&app_id=cb0f1bb1&app_key=7934267ee79a519d8019904f7184f12cfrom=0&to=100";
+const APIURL = "https://api.edamam.com/search?q=dinner&app_id=c080c39f&app_key=8787df3b40216c9c8236909c86ac3d23&from=0&to=100"
+
 
 
 // FUNCTIONS
@@ -59,7 +59,7 @@ let callAPI = (url) => {
 /*returning the searched word into the URL to use in callAPI for new results*/
 const setAPI = (event) => {
     event.preventDefault()
-    let searchAPI = `https://api.edamam.com/search?q=${searchInput.value.toLowerCase()}&app_id=c080c39f&app_key=ae4997265531140bc1aa520064a9b5e9`
+    let searchAPI = `https://api.edamam.com/search?q=${searchInput.value.toLowerCase()}&app_id=c080c39f&app_key=8787df3b40216c9c8236909c86ac3d23`
     resultsSection.innerHTML = " ";
     callAPI(searchAPI)
 }
@@ -68,7 +68,7 @@ const setAPI = (event) => {
 /* Functions for filter buttons */
 
 const getChickenData = () => {
-    const APIChicken = "https://api.edamam.com/search?q=chicken&app_id=8c98f6f4&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e&from=0&to=100"
+    const APIChicken = "https://api.edamam.com/search?q=chicken&app_id=c080c39f&app_key=8787df3b40216c9c8236909c86ac3d23&from=0&to=100"
     fetch(APIChicken)
         .then((response) => {
             return response.json()
@@ -80,7 +80,7 @@ const getChickenData = () => {
 }
 
 const getPastaData = () => {
-    const APIPasta = "https://api.edamam.com/search?q=pasta&app_id=8c98f6f4&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e&from=0&to=100"
+    const APIPasta = "https://api.edamam.com/search?q=pasta&app_id=c080c39f&app_key=8787df3b40216c9c8236909c86ac3d23&from=0&to=100"
     fetch(APIPasta)
         .then((response) => {
             return response.json()
@@ -92,7 +92,7 @@ const getPastaData = () => {
 }
 
 const getVegetarianData = () => {
-    const APIVegetarian = "https://api.edamam.com/search?q=vegan&app_id=8c98f6f4&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e&from=0&to=100"
+    const APIVegetarian = "https://api.edamam.com/search?q=vegan&app_id=c080c39f&app_key=8787df3b40216c9c8236909c86ac3d23&from=0&to=100"
     fetch(APIVegetarian)
         .then((response) => {
             return response.json()
@@ -104,7 +104,7 @@ const getVegetarianData = () => {
 }
 
 const getLactoseFreeData = () => {
-    const APILactoseFree = "https://api.edamam.com/search?q=lactose-free&app_id=8c98f6f4&app_key=dd4f1f97d6e41f1e2d0be09cdd08db0e&from=0&to=100"
+    const APILactoseFree = "https://api.edamam.com/search?q=lactose-free&app_id=c080c39f&app_key=8787df3b40216c9c8236909c86ac3d23&from=0&to=100"
     fetch(APILactoseFree)
         .then((response) => {
             return response.json()
@@ -118,7 +118,7 @@ const getLactoseFreeData = () => {
 
 
 /*Start*/
-callAPI(APIURLTWO)
+callAPI(APIURL)
 
 /*EVENTLISTENERS*/
 search.addEventListener("submit", setAPI)
